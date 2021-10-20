@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MatCardModule } from '@angular/material/card';
+import { TitleCardsComponent } from './title-cards/title-cards.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TitleCardsComponent
   ],
   imports: [
     BrowserModule,
