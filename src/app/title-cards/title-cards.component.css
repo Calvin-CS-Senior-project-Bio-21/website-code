@@ -1,5 +1,9 @@
-.std-card {
-    width: 750px;
+.title-card {
+    width: 100%;
+    height: 3%;
     margin: auto;
     background-color: #F3cd00;
+}
+.title {
+    text-align: center;
 }

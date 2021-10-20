@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon'
 import { TitleCardsComponent } from './title-cards/title-cards.component';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TitleCardsComponent } from './title-cards/title-cards.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
