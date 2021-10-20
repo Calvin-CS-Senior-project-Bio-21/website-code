@@ -1,9 +1,16 @@
 .std-card {
-    width: 300px;
-    margin-left: 750px;
-    margin-top: 20px;
+    width: 750px;
+    margin: auto;
+    background-color: #F3cd00;
 }
 html {
     margin: 0px;
     background-color: #8c2131;
+}
+
+.calvin-maroon {
+    background-color: #8c2131;
+}
+.calvin-gold {
+    background-color: #F3cd00;
 }
