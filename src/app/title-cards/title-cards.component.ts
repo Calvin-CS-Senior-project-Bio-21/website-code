@@ -11,5 +11,6 @@ export class TitleCardsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
 }

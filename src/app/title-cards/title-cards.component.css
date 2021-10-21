@@ -1,9 +1,16 @@
 .title-card {
     width: 100%;
-    height: 3%;
+    height: 5%;
     margin: auto;
     background-color: #F3cd00;
 }
 .title {
     text-align: center;
+    /* margin: auto; */
+}
+.ham-button {
+    margin-left: -90%;
+}
+.spacer{
+    flex: .5 .5 auto;
 }
