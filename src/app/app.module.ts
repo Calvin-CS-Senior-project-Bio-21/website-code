@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { TitleCardsComponent } from './title-cards/title-cards.component';
 import { GraphCardsComponent } from './graph-cards/graph-cards.component';
 
@@ -25,7 +27,8 @@ import { GraphCardsComponent } from './graph-cards/graph-cards.component';
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,9 @@
 <mat-card class="graph-card">
-    <mat-card-title>{{card_title}}</mat-card-title>
-    <mat-card-subtitle>{{id}}</mat-card-subtitle>
+    <mat-card-title>
+        <mat-toolbar style="background-color: #F3cd00;">
+            <span class="Title">{{card_title}}</span>
+            <!-- <button></button> -->
+        </mat-toolbar>
+    </mat-card-title>
+    <img mat-card-image src={{img}}>
 </mat-card>

@@ -30,8 +30,10 @@
     <span class="title">Natural Growth on Calvin's Campus</span>
   </mat-toolbar>
 </p>
-<span>
-  <app-graph-cards></app-graph-cards>
 
-  <app-graph-cards></app-graph-cards>
-</span>
+<div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4]">
+  <span>
+    <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
+  </span>
+</div>
