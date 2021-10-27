@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -28,7 +29,8 @@ import { GraphCardsComponent } from './graph-cards/graph-cards.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

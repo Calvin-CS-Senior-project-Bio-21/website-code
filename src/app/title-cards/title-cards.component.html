@@ -21,8 +21,14 @@
       </mat-card-actions> -->
     <!-- <mat-card-title class="title">Natural Growth on Calvin's Campus</mat-card-title>  
   </mat-card> -->
-<div class="home">
-  <p>
+  
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Stuff</p>
+
+  </mat-drawer>
+    
+  <div>  
     <mat-toolbar class="title-card">
       <button mat-icon-button class="side-menu" aria-label="menu-button">
         <mat-icon>menu</mat-icon>
@@ -30,12 +36,14 @@
       <span class="spacer"></span>
       <span class="title">Natural Growth on Calvin's Campus</span>
     </mat-toolbar>
-  </p>
+  </div>
+
 
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4]">
-    <span>
-      <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
-    </span>
+      <span>
+        <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
+      </span>
+    </div>
   </div>
-</div>
+</mat-drawer-container>
