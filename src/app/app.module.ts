@@ -10,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -34,6 +35,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatButtonModule,
     FlexLayoutModule,
     MatSidenavModule,
+    MatDividerModule,
     BrowserAnimationsModule
   ],
   providers: [],

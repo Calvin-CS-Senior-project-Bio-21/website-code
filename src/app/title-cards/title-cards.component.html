@@ -27,15 +27,20 @@
 </div> -->
 <div class="container">
   <mat-sidenav-container autosize>
-    <mat-sidenav #drawer class="sidenav" mode="side">
-      <p>Stuff</p>
+    <mat-sidenav #drawer class="sidenav" mode="push">
+
+      <button mat-button class="side-menu">Home</button>
+      <mat-divider></mat-divider>
+      <button mat-button class="side-menu">Pi 1</button>
+      <mat-divider></mat-divider>
+      <button mat-button class="side-menu">About</button>
 
     </mat-sidenav>
     <mat-sidenav-content class="content">
     <div>
       <p>
       <mat-toolbar class="title-card">
-        <button mat-icon-button class="side-menu" aria-label="menu-button" (click)="drawer.toggle()">
+        <button mat-icon-button aria-label="menu-button" (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>

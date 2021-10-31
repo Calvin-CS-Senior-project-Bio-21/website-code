@@ -8,18 +8,21 @@
     text-align: center;
     /* margin: auto; */
 }
-.ham-button {
-    margin-left: -90%;
-}
+
 .spacer{
     flex: .5 .5 auto;
 }
 
-.container {
-    height: max-content;
-  }
-
 .content {
-    height: max-content;
+    height: 1000px;
+    background-color: #8c2131;
 }
-  
+.sidenav {
+    background-color: #8c2131;
+    width: 10%;
+}
+.side-menu {
+    text-align: center;
+    width: 100%;
+    color: white;
+}
