@@ -10,17 +10,20 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TitleCardsComponent } from './title-cards/title-cards.component';
 import { GraphCardsComponent } from './graph-cards/graph-cards.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TitleCardsComponent,
-    GraphCardsComponent
+    GraphCardsComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { GraphCardsComponent } from './graph-cards/graph-cards.component';
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

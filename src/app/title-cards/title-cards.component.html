@@ -22,28 +22,36 @@
     <!-- <mat-card-title class="title">Natural Growth on Calvin's Campus</mat-card-title>  
   </mat-card> -->
   
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <p>Stuff</p>
+<!-- <div *ngIf="side_bar">
+  <app-sidebar></app-sidebar>
+</div> -->
+<div class="container">
+  <mat-sidenav-container autosize>
+    <mat-sidenav #drawer class="sidenav" mode="side">
+      <p>Stuff</p>
 
-  </mat-drawer>
-    
-  <div>  
-    <mat-toolbar class="title-card">
-      <button mat-icon-button class="side-menu" aria-label="menu-button">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="spacer"></span>
-      <span class="title">Natural Growth on Calvin's Campus</span>
-    </mat-toolbar>
-  </div>
-
-
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4]">
-      <span>
-        <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
-      </span>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+    <div>
+      <p>
+      <mat-toolbar class="title-card">
+        <button mat-icon-button class="side-menu" aria-label="menu-button" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <span class="title">Natural Growth on Calvin's Campus</span>
+      </mat-toolbar>
+      </p>  
     </div>
-  </div>
-</mat-drawer-container>
+
+
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1, 2, 3, 4]">
+        <span>
+          <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
+        </span>
+      </div>
+    </div>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
