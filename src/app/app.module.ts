@@ -15,16 +15,19 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { TitleCardsComponent } from './title-cards/title-cards.component';
 import { GraphCardsComponent } from './graph-cards/graph-cards.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TitleCardsComponent,
     GraphCardsComponent,
-    SidebarComponent
+    HeaderComponent,
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TitleCardsComponent } from './title-cards/title-cards.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: TitleCardsComponent}
+  {path: 'home', component: HeaderComponent},
+  {path: 'about', component: HeaderComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,27 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #drawer class="sidenav" mode="push">
+
+      <button mat-button class="side-menu" routerLink="/home">Home</button>
+      <mat-divider></mat-divider>
+      <button mat-button class="side-menu">Pi 1</button>
+      <mat-divider></mat-divider>
+      <button mat-button class="side-menu" routerLink="/about">About</button>
+
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <div>
+            <p>
+            <mat-toolbar class="title-card">
+              <button mat-icon-button aria-label="menu-button" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <span class="spacer"></span>
+              <span class="title">Natural Growth on Calvin's Campus</span>
+            </mat-toolbar>
+            </p>  
+          </div>
+        <div *ngIf="router.url === '/home'"><app-home></app-home></div>
+        <div *ngIf="router.url === '/about'"><app-about></app-about></div>
+        
+    </mat-sidenav-content>
+</mat-sidenav-container>
