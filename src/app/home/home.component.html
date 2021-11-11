@@ -1,7 +1,9 @@
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1, 2, 3, 4]">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1, 2, 3]">
       <span>
-        <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards>
+        <!-- <app-graph-cards card_title="Graph {{num}}" id="0" image="assets/garden-{{num}}.jpg"></app-graph-cards> -->
+        <app-graph-cards card_title="Graph {{num}}" id={{num}}></app-graph-cards>
+        <!-- <p>{{data1[num].value}}</p> -->
       </span>
     </div>
   </div>

@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "bio-app:build:production",
+            "firebaseProject": "biosensorbox-c9334",
+            "firebaseHostingSite": "biosensorbox-c9334"
+          }
         }
       }
     }

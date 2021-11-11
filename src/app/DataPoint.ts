@@ -6,6 +6,7 @@
 
 export interface dataPoint {
     time: String;
-    type: Number;
-    value: Number;
+    co2: number;
+    humidity: number;
+    temperature: number;
 }

@@ -5,5 +5,8 @@
             <!-- <button></button> -->
         </mat-toolbar>
     </mat-card-title>
-    <img mat-card-image src={{img}}>
+    <mat-card-content>
+        <div echarts [options]="chartOptions" [merge]="mergeOptions" class="demo-chart"></div>
+    </mat-card-content>
+    <!-- <img mat-card-image src={{img}}> -->
 </mat-card>

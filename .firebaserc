@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "biosensorbox-c9334": {
+      "hosting": {
+        "bio-app": [
+          "biosensorbox-c9334"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "biosensorbox-c9334"
+  }
+}
