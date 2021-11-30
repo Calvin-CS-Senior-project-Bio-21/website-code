@@ -3,6 +3,9 @@ import { EChartsOption } from 'echarts';
 import { SAMPLE_1 } from '../sample_db';
 import { dataPoint } from '../DataPoint';
 import { Observable, of } from 'rxjs';
+import { DataBaseService } from '../data-base.service';
+import { DocumentData } from 'rxfire/firestore/interfaces';
+import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -17,6 +20,8 @@ export class GraphCardsComponent implements OnInit {
 
   initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
   new_data: number[] = [];
+
+  item: AngularFirestoreDocument<dataPoint>
 
   ngOnInit(): void {
     this.getData().subscribe(data_1 => this.data_1 = data_1);
@@ -48,7 +53,9 @@ export class GraphCardsComponent implements OnInit {
     ]
   }
 
-  constructor() { 
+  constructor(private db: DataBaseService) {
+    console.log("Before assignment");
+    this.item = db.get_data() 
     setInterval(() => {
       console.log('updated')
       this.new_data.push(this.data_1.co2, this.data_1.humidity, this.data_1.temperature)

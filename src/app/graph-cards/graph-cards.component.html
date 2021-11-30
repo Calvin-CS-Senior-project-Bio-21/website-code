@@ -6,6 +6,12 @@
         </mat-toolbar>
     </mat-card-title>
     <mat-card-content>
+        <p>
+            <!-- <li *ngFor="let i of item | async">
+                {{i}}
+            </li> -->
+            {{item}}
+        </p>
         <div echarts [options]="chartOptions" [merge]="mergeOptions" class="demo-chart"></div>
     </mat-card-content>
     <!-- <img mat-card-image src={{img}}> -->

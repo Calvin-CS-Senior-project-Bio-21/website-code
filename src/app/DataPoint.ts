@@ -10,3 +10,13 @@ export interface dataPoint {
     humidity: number;
     temperature: number;
 }
+
+// export interface dataPoint {
+//     CO2: number;
+//     Humidity: number;
+//     Temp: number;
+// }
+
+export interface Item {
+    name: string;
+  }

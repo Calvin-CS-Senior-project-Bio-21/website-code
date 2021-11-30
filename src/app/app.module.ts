@@ -24,7 +24,9 @@ import { AboutComponent } from './about/about.component';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore,getFirestore,Firestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatSidenavModule,
     MatDividerModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    
+    // Firestore,
 
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
@@ -52,7 +57,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
       provideFirebaseApp(() => initializeApp(environment.firebase)),
       provideFirestore(() => getFirestore())
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
