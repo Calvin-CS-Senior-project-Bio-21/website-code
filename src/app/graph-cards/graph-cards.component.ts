@@ -5,7 +5,7 @@ import { dataPoint } from '../DataPoint';
 import { Observable, of } from 'rxjs';
 import { DataBaseService } from '../data-base.service';
 import { DocumentData } from 'rxfire/firestore/interfaces';
-import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -21,17 +21,16 @@ export class GraphCardsComponent implements OnInit {
   initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
   new_data: number[] = [];
 
-  item: AngularFirestoreDocument<dataPoint>
+  // item: AngularFirestoreCollection<dataPoint>
 
   ngOnInit(): void {
-    this.getData().subscribe(data_1 => this.data_1 = data_1);
-    console.log(this.data_1.co2);
   }
-
-  getData(): Observable<dataPoint> {
-    const DATA1 = of(SAMPLE_1);
-    return DATA1;
-  }
+  db_data: any 
+  temp = this.db.getData().then(value => 
+      {this.db_data = value
+       console.log(this.db_data)
+      }
+    )
 
   @Input() card_title = "Graph ?";
   @Input("id") id = "?";
@@ -48,14 +47,14 @@ export class GraphCardsComponent implements OnInit {
       {
         name: "Test_data",
         data: this.initial_data,
-        type: "bar",
+        type: "line",
       }
     ]
   }
 
-  constructor(private db: DataBaseService) {
+  constructor(public db: DataBaseService) {
     console.log("Before assignment");
-    this.item = db.get_data() 
+    // this.item = db.get_data() 
     setInterval(() => {
       console.log('updated')
       this.new_data.push(this.data_1.co2, this.data_1.humidity, this.data_1.temperature)
@@ -64,7 +63,7 @@ export class GraphCardsComponent implements OnInit {
           {
             name: "Test_data",
             data: this.new_data,
-            type: "bar"
+            type: "line"
           }
         ]
       }

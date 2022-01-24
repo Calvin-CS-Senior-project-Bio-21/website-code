@@ -1,32 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, getFirestore } from '@angular/fire/firestore';
-import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot} from '@angular/fire/compat/firestore';
-import { DocumentData } from 'rxfire/firestore/interfaces';
-import { Observable } from 'rxjs';
-import { dataPoint, Item } from './DataPoint';
-
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataBaseService {
-  // data$: Observable<dataPoint[]>;
-  data$: AngularFirestoreDocument<dataPoint>;
- 
-  constructor(private afs: AngularFirestore) {
-    const my_collection = afs.collection<dataPoint>('Readings');
-    // const my_collection = afs.firestore.collection('Readings')
 
-    const doc1 = my_collection.doc('Example Day');
-    const collection2 = doc1.collection<dataPoint>('<Date>');
-    const doc2 = collection2.doc('Example Reading');
-    console.log(doc2.get());
-    this.data$ = doc2;
-   }
+  constructor() {}
 
-  get_data(): AngularFirestoreDocument<dataPoint> {
-    return this.data$;
-  }
+  firebase = {
+    apiKey: "AIzaSyCpEcfJXs2LKxwaL_u4d0utvQHH3oSA0fw",
+    authDomain: "biosensorbox-c9334.firebaseapp.com",
+    projectId: "biosensorbox-c9334",
+    storageBucket: "biosensorbox-c9334.appspot.com",
+    messagingSenderId: "743762268982",
+    appId: "1:743762268982:web:1b378374039f1248181997"
+  };
   
+
+  app = initializeApp(this.firebase)
+  db = getFirestore(this.app)
+  getData() {
+    let promise = new Promise(async (resolve, reject) =>{
+      const mainCol = collection(this.db, '<Date>')
+      const dataSnapshot = await getDocs(mainCol)
+      const sensorData = dataSnapshot.docs.map(doc => doc.data())
+      resolve(sensorData)
+    })
+    return promise
+  }
 }

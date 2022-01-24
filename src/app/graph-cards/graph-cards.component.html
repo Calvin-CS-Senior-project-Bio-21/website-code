@@ -7,12 +7,13 @@
     </mat-card-title>
     <mat-card-content>
         <p>
-            <!-- <li *ngFor="let i of item | async">
-                {{i}}
-            </li> -->
-            {{item}}
+            <li *ngFor="let reading of db_data">
+                {{reading.co2}}
+                {{reading.temp}}
+            </li>
+
         </p>
-        <div echarts [options]="chartOptions" [merge]="mergeOptions" class="demo-chart"></div>
+        <!-- <div echarts [options]="chartOptions" [merge]="mergeOptions" class="demo-chart"></div> -->
     </mat-card-content>
     <!-- <img mat-card-image src={{img}}> -->
 </mat-card>
