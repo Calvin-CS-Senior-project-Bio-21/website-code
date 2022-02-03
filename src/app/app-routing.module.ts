@@ -5,7 +5,8 @@ import { HeaderComponent } from './header/header.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HeaderComponent},
-  {path: 'about', component: HeaderComponent}
+  {path: 'about', component: HeaderComponent},
+  {path: 'adder', component: HeaderComponent},
 ];
 
 @NgModule({

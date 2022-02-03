@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatInputModule} from '@angular/material/input'; 
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -34,7 +36,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     GraphCardsComponent,
     HeaderComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     MatSidenavModule,
     MatDividerModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebase),
     
     // Firestore,

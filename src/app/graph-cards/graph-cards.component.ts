@@ -25,20 +25,19 @@ export class GraphCardsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  db_data: any 
-  temp = this.db.getData().then(value => 
-      {this.db_data = value
-       console.log(this.db_data)
-      }
-    )
+  // db_data: any 
+  // temp = this.db.getData().then(value => 
+  //     {this.db_data = value
+  //      console.log(this.db_data)
+  //     }
+  //   )
 
   @Input() card_title = "Graph ?";
   @Input("id") id = "?";
 
   chartOptions: EChartsOption = {
     xAxis: {
-      type: 'category',
-      data: ['CO2', 'Humidity', 'Temperature']
+      type: 'value',
     },
     yAxis: {
       type: 'value',
@@ -46,18 +45,29 @@ export class GraphCardsComponent implements OnInit {
     series: [
       {
         name: "Test_data",
-        data: this.initial_data,
+        // data: this.initial_data,
         type: "line",
       }
     ]
   }
 
   constructor(public db: DataBaseService) {
-    console.log("Before assignment");
-    // this.item = db.get_data() 
+    let db_data: any 
+    let old_length: number
+    old_length = 0
+    let new_length: number
     setInterval(() => {
       console.log('updated')
-      this.new_data.push(this.data_1.co2, this.data_1.humidity, this.data_1.temperature)
+      
+      let temp = this.db.getData().then(value => 
+      {db_data = value
+       new_length = db_data.length
+       console.log(db_data.length)
+      }     
+    )
+    for(let i = 0; i < new_length; i++){
+      this.new_data.push(db_data[i].co2)
+    }
       this.mergeOptions = {
         series: [
           {
