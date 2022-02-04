@@ -1,19 +1,13 @@
 <mat-card class="graph-card">
     <mat-card-title>
-        <mat-toolbar style="background-color: #F3cd00;">
+        <mat-toolbar class="card-title" style="background-color: #F3cd00;">
             <span class="Title">{{card_title}}</span>
             <!-- <button></button> -->
         </mat-toolbar>
     </mat-card-title>
     <mat-card-content>
-        <!-- <p>
-            <li *ngFor="let reading of db_data">
-                {{reading.co2}}
-                {{reading.temp}}
-            </li>
-
-        </p> -->
-        <div echarts [options]="chartOptions" [merge]="mergeOptions" class="demo-chart"></div>
+            <div *ngIf="id == '1'" echarts [options]="chartOptions" [merge]="mergeOptions_1" class="demo-chart"></div>
+            <div *ngIf="id == '2'" echarts [options]="chartOptions" [merge]="mergeOptions_2" class="demo-chart"></div>
     </mat-card-content>
     <!-- <img mat-card-image src={{img}}> -->
 </mat-card>

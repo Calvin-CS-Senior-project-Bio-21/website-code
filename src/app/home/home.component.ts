@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { dataPoint } from '../DataPoint';
-import { SAMPLE_1 } from '../sample_db';
 
 @Component({
   selector: 'app-home',

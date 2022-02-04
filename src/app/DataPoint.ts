@@ -1,3 +1,4 @@
+import { DataBaseService } from "./data-base.service";
 /*
  * time: uses ISO_8601 <Date>T<time>
  * type: 0 = CO2 (ppm), 1 = Humidity (%), 2 = temperature (degrees C), 3 = Error Handling (for now)
@@ -5,10 +6,10 @@
 */
 
 export interface dataPoint {
-    time: String;
-    co2: number;
-    humidity: number;
-    temperature: number;
+    time: Array<String>;
+    co2: Array<number>;
+    humidity: Array<number>;
+    temperature: Array<number>;
 }
 
 // export interface dataPoint {
@@ -17,6 +18,6 @@ export interface dataPoint {
 //     Temp: number;
 // }
 
-export interface Item {
-    name: string;
-  }
+// export interface Item {
+//     name: string;
+//   }

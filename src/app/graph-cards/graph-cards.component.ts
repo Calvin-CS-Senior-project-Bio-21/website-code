@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { SAMPLE_1 } from '../sample_db';
 import { dataPoint } from '../DataPoint';
 import { Observable, of } from 'rxjs';
 import { DataBaseService } from '../data-base.service';
@@ -15,11 +14,13 @@ import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 })
 export class GraphCardsComponent implements OnInit {
 
-  data_1: dataPoint = {time: "", co2: 0, humidity: 0, temperature: -273};
-  mergeOptions = {};
+  // data_1: dataPoint = {time: "", co2: 0, humidity: 0, temperature: -273};
+  mergeOptions_1 = {};
+  mergeOptions_2 = {};
 
-  initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
-  new_data: number[] = [];
+  // initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
+  // new_data: number[] = [];
+  new_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
 
   // item: AngularFirestoreCollection<dataPoint>
 
@@ -37,7 +38,9 @@ export class GraphCardsComponent implements OnInit {
 
   chartOptions: EChartsOption = {
     xAxis: {
-      type: 'value',
+      type: 'category',
+      name: "Time"
+      // data: this.new_data.time,
     },
     yAxis: {
       type: 'value',
@@ -45,34 +48,68 @@ export class GraphCardsComponent implements OnInit {
     series: [
       {
         name: "Test_data",
-        // data: this.initial_data,
         type: "line",
       }
     ]
   }
 
+
+
   constructor(public db: DataBaseService) {
     let db_data: any 
-    let old_length: number
-    old_length = 0
+    let old_length: number = 0 
     let new_length: number
     setInterval(() => {
-      console.log('updated')
-      
-      let temp = this.db.getData().then(value => 
+   
+      let promise = this.db.getData().then(value => 
       {db_data = value
        new_length = db_data.length
-       console.log(db_data.length)
       }     
     )
-    for(let i = 0; i < new_length; i++){
-      this.new_data.push(db_data[i].co2)
+    if(new_length > old_length){
+      for(let i = 0; i < new_length; i++){
+        this.new_data.co2.push(db_data[i].co2)
+        this.new_data.humidity.push(db_data[i].humidity)
+        this.new_data.temperature.push(db_data[i].temp)
+        this.new_data.time.push(db_data[i].time)
+      }
+      old_length = new_length
     }
-      this.mergeOptions = {
+    // console.log(this.new_data)
+      this.mergeOptions_1 = {
+        xAxis: [
+          {
+            data: this.new_data.time,
+          }
+        ],
+        yAxis: [
+          {
+            name: "ppm"
+          }
+        ],
         series: [
           {
             name: "Test_data",
-            data: this.new_data,
+            data: this.new_data.co2,
+            type: "line"
+          }
+        ]
+      }
+      this.mergeOptions_2 = {
+        xAxis: [
+          {
+            data: this.new_data.time,
+          }
+        ],
+        yAxis: [
+          {
+            name: "temp C"
+          }
+        ],
+        series: [
+          {
+            name: "Test_data",
+            data: this.new_data.temperature,
             type: "line"
           }
         ]
