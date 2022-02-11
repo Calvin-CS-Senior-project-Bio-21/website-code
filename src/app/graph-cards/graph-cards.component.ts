@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { DataBaseService } from '../data-base.service';
 import { DocumentData } from 'rxfire/firestore/interfaces';
 import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-graph-cards',
@@ -26,6 +26,15 @@ export class GraphCardsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  show_options: Boolean = false
+  change_show_options() {
+    this.show_options = !this.show_options
+    console.log(this.show_options)
+    console.log(this.Readings_1.value)
+  }
+  Readings_1 = new FormControl();
+  Readings_2 = new FormControl();
+  options_list: string[] = ["CO2", "Humidity", "Temperature", "Time"]
   // db_data: any 
   // temp = this.db.getData().then(value => 
   //     {this.db_data = value
@@ -59,13 +68,12 @@ export class GraphCardsComponent implements OnInit {
     let db_data: any 
     let old_length: number = 0 
     let new_length: number
-    setInterval(() => {
-   
-      let promise = this.db.getData().then(value => 
+    let promise = this.db.getData().then(value => 
       {db_data = value
        new_length = db_data.length
-      }     
+      }  
     )
+    setInterval(() => {
     if(new_length > old_length){
       for(let i = 0; i < new_length; i++){
         this.new_data.co2.push(db_data[i].co2)

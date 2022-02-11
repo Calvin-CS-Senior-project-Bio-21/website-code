@@ -14,6 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -24,11 +28,10 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore,Firestore } from '@angular/fire/firestore';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
+import { getFirestore} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -51,17 +54,19 @@ import { AngularFireModule } from '@angular/fire/compat';
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    MatSelectModule,
+    MatOptionModule,
+    FormsModule,
+    ReactiveFormsModule,
     
     // Firestore,
 
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
-      provideFirebaseApp(() => initializeApp(environment.firebase)),
-      provideFirestore(() => getFirestore())
+
   ],
-  providers: [AngularFirestore],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
