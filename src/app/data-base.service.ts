@@ -27,8 +27,10 @@ export class DataBaseService {
       const mainCol = collection(this.db, '<Date>')
       const dataSnapshot = await getDocs(mainCol)
       const sensorData = dataSnapshot.docs.map(doc => doc.data())
+      console.log("Read")
       resolve(sensorData)
     })
     return promise
   }
+
 }

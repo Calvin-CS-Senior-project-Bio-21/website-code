@@ -24,8 +24,9 @@
         </mat-toolbar>
     </mat-card-title>
     <mat-card-content>
-            <div *ngIf="id == '1'" echarts [options]="chartOptions" [merge]="mergeOptions_1" class="demo-chart"></div>
+            <div *ngIf="id == '1'" echarts [options]="chartOptions" [loading]="isLoading" [merge]="mergeOptions_1" class="demo-chart"></div>
             <div *ngIf="id == '2'" echarts [options]="chartOptions" [merge]="mergeOptions_2" class="demo-chart"></div>
+            <div *ngIf="id == '3'" echarts [options]="chartOptions" [merge]="mergeOptions_3" class="demo-chart"></div>
     </mat-card-content>
     <!-- <img mat-card-image src={{img}}> -->
 </mat-card>

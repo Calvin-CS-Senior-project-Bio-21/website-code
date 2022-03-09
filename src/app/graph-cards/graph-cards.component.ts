@@ -17,6 +17,8 @@ export class GraphCardsComponent implements OnInit {
   // data_1: dataPoint = {time: "", co2: 0, humidity: 0, temperature: -273};
   mergeOptions_1 = {};
   mergeOptions_2 = {};
+  mergeOptions_3 = {};
+  isLoading = false;
 
   // initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
   // new_data: number[] = [];
@@ -42,15 +44,18 @@ export class GraphCardsComponent implements OnInit {
   //     }
   //   )
 
-  @Input() card_title = "Graph ?";
+  // @Input() db_data: any;
   @Input("id") id = "?";
+  @Input("graph") graph = "?"
 
   chartOptions: EChartsOption = {
     xAxis: {
       type: 'category',
-      name: "Time"
+      name: "Time",
+      boundaryGap: false
       // data: this.new_data.time,
     },
+    tooltip: {},
     yAxis: {
       type: 'value',
     },
@@ -61,68 +66,109 @@ export class GraphCardsComponent implements OnInit {
       }
     ]
   }
-
-
-
-  constructor(public db: DataBaseService) {
-    let db_data: any 
-    let old_length: number = 0 
-    let new_length: number
+  db_data: any
+  old_length: number = 0 
+  new_length: number = 0
+  int_time: number = 3000
+  grab_data() {
+    // let db_data: any
+   
     let promise = this.db.getData().then(value => 
-      {db_data = value
-       new_length = db_data.length
+      {this.db_data = value
+       this.new_length = this.db_data.length
+
       }  
     )
-    setInterval(() => {
-    if(new_length > old_length){
-      for(let i = 0; i < new_length; i++){
-        this.new_data.co2.push(db_data[i].co2)
-        this.new_data.humidity.push(db_data[i].humidity)
-        this.new_data.temperature.push(db_data[i].temp)
-        this.new_data.time.push(db_data[i].time)
+    if(this.new_length > this.old_length){
+      // console.log(this.new_length)
+      // console.log(this.old_length)
+      for(let i = this.old_length; i < this.new_length; i++){
+        this.new_data.co2.push(this.db_data[i].co2)
+        this.new_data.humidity.push(this.db_data[i].humidity)
+        this.new_data.temperature.push(this.db_data[i].temp)
+        this.new_data.time.push(this.db_data[i].time)
+        clearInterval(this.interval)
       }
-      old_length = new_length
+      this.old_length = this.new_length
     }
-    // console.log(this.new_data)
-      this.mergeOptions_1 = {
-        xAxis: [
-          {
-            data: this.new_data.time,
-          }
-        ],
-        yAxis: [
-          {
-            name: "ppm"
-          }
-        ],
-        series: [
-          {
-            name: "Test_data",
-            data: this.new_data.co2,
-            type: "line"
-          }
-        ]
-      }
-      this.mergeOptions_2 = {
-        xAxis: [
-          {
-            data: this.new_data.time,
-          }
-        ],
-        yAxis: [
-          {
-            name: "temp C"
-          }
-        ],
-        series: [
-          {
-            name: "Test_data",
-            data: this.new_data.temperature,
-            type: "line"
-          }
-        ]
-      }
-    }, 3000)
+  }
+  interval = setInterval(()=>this.data_update(), this.int_time)
+  data_update() {
+    
+    this.grab_data()
+
+    this.mergeOptions_1 = {
+      xAxis: [
+        {
+          data: this.new_data.time,
+        }
+      ],
+      yAxis: [
+        {
+          name: "ppm"
+        }
+      ],
+      series: [
+        {
+          name: "co2 vs. time",
+          data: this.new_data.co2,
+          type: "line",
+        }
+      ]
+    }
+    this.mergeOptions_2 = {
+      xAxis: [
+        {
+          data: this.new_data.time,
+        }
+      ],
+      yAxis: [
+        {
+          name: "temp C"
+        }
+      ],
+      series: [
+        {
+          name: "Test_data",
+          data: this.new_data.temperature,
+          type: "line"
+        }
+      ]
+    }
+    this.mergeOptions_3 = {
+      xAxis: [
+        {
+          data: this.new_data.time,
+        }
+      ],
+      yAxis: [
+        {
+          name: "%"
+        }
+      ],
+      series: [
+        {
+          name: "Test_data",
+          data: this.new_data.humidity,
+          type: "line"
+        }
+      ]
+    }
+
+  }
+  
+  constructor(public db: DataBaseService) {
+    // while (this.new_length == 0){
+      this.data_update()
+    // }
+      
+    let iter:number = 0
+    setInterval(() => {
+      console.log(iter)
+      iter++
+      this.data_update()
+
+    }, 1800000)               //1000 = 1 second, 1,800 seconds = 30 minutes
   }
   
 }
