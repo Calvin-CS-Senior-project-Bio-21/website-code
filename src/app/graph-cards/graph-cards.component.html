@@ -2,7 +2,7 @@
     <mat-card-title>
         <mat-toolbar class="card-title" style="background-color: #F3cd00;">
             <!-- <span class="Title">{{card_title}}</span> -->
-            <div  *ngIf="show_options == true">
+            <!-- <div  *ngIf="show_options == true">
                 <mat-form-field appearance="fill">
                     <mat-label>X-Axis</mat-label>
                     <mat-select [formControl]="Readings_1">
@@ -19,14 +19,24 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
-            <button mat-raised-button (click)="change_show_options()">Choose Data</button>
+            </div> -->
+            <button *ngIf="show_options" mat-raised-button (click)="show_options = !show_options">Last 24h</button>
+            <button *ngIf="!show_options" mat-raised-button (click)="show_options = !show_options">All Data</button>
         </mat-toolbar>
     </mat-card-title>
     <mat-card-content>
-            <div *ngIf="id == '1'" echarts [options]="chartOptions" [loading]="isLoading" [merge]="mergeOptions_1" class="demo-chart"></div>
-            <div *ngIf="id == '2'" echarts [options]="chartOptions" [merge]="mergeOptions_2" class="demo-chart"></div>
-            <div *ngIf="id == '3'" echarts [options]="chartOptions" [merge]="mergeOptions_3" class="demo-chart"></div>
+            <div *ngIf="id == '1'">
+                <div *ngIf="show_options" echarts [options]="chartOptions" [merge]="mergeOptions_1_true" class="demo-chart"></div>
+                <div *ngIf="!show_options" echarts [options]="chartOptions" [merge]="mergeOptions_1_false" class="demo-chart"></div>
+            </div>
+            <div *ngIf="id == '2'"> 
+                <div *ngIf="show_options" echarts [options]="chartOptions" [merge]="mergeOptions_2_true" class="demo-chart"></div>
+                <div *ngIf="!show_options" echarts [options]="chartOptions" [merge]="mergeOptions_2_false" class="demo-chart"></div>
+            </div>
+            <div *ngIf="id == '3'">
+                <div *ngIf="show_options" echarts [options]="chartOptions" [merge]="mergeOptions_3_true" class="demo-chart"></div>
+                <div *ngIf="!show_options" echarts [options]="chartOptions" [merge]="mergeOptions_3_false" class="demo-chart"></div>
+            </div>
     </mat-card-content>
     <!-- <img mat-card-image src={{img}}> -->
 </mat-card>
