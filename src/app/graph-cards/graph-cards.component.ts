@@ -90,16 +90,6 @@ export class GraphCardsComponent implements OnInit {
 
         clearInterval(this.interval)
       }
-      // if(this.pi1_data.time.length >= 48){
-      //   let diff = this.pi1_data.time.length - 48
-      //   for(let i = 0; i < diff; i++){
-      //     this.pi1_data.co2.shift()
-      //     this.pi1_data.humidity.shift()
-      //     this.pi1_data.temperature.shift()
-      //     this.pi1_data.time.shift()
-      //   }
-      // }
-
 
       this.old_length = this.new_length
     }
@@ -117,7 +107,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "ppm"
+          name: "PPM of CO2"
         }
       ],
       series: [
@@ -136,7 +126,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "ppm"
+          name: "PPM of CO2"
         }
       ],
       series: [
@@ -147,7 +137,6 @@ export class GraphCardsComponent implements OnInit {
         }
       ]
     }
-
     this.mergeOptions_2_true = {
       xAxis: [
         {
@@ -156,7 +145,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "temp C"
+          name: "Temperature of Degrees C"
         }
       ],
       series: [
@@ -175,7 +164,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "temp C"
+          name: "Temperature of Degrees C"
         }
       ],
       series: [
@@ -186,8 +175,6 @@ export class GraphCardsComponent implements OnInit {
         }
       ]
     }
-
-
     this.mergeOptions_3_true = {
       xAxis: [
         {
@@ -196,7 +183,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "%"
+          name: "Percent Humidity"
         }
       ],
       series: [
@@ -215,7 +202,7 @@ export class GraphCardsComponent implements OnInit {
       ],
       yAxis: [
         {
-          name: "%"
+          name: "Percent Humidity"
         }
       ],
       series: [

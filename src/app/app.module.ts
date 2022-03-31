@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxEchartsModule } from 'ngx-echarts';
 
+
 //Component imports
 import { GraphCardsComponent } from './graph-cards/graph-cards.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +33,8 @@ import { AboutComponent } from './about/about.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { getFirestore} from '@angular/fire/firestore';
+import { DownloadPageComponent } from './download-page/download-page.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { getFirestore} from '@angular/fire/firestore';
     HeaderComponent,
     HomeComponent,
     AboutComponent,
+    DownloadPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import { getFirestore} from '@angular/fire/firestore';
     MatOptionModule,
     FormsModule,
     ReactiveFormsModule,
+
+
     
     // Firestore,
 
@@ -66,7 +72,7 @@ import { getFirestore} from '@angular/fire/firestore';
     }),
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

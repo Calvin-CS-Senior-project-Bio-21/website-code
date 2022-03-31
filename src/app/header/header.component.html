@@ -6,6 +6,8 @@
       <button mat-button class="side-menu">Pi 1</button>
       <mat-divider></mat-divider>
       <button mat-button class="side-menu" routerLink="/about">About</button>
+      <mat-divider></mat-divider>
+      <button mat-button class="side-menu" routerLink="/download">Download</button>
 
     </mat-sidenav>
     <mat-sidenav-content class="content">
@@ -22,5 +24,6 @@
           </div>
         <div *ngIf="router.url === '/home'"><app-home></app-home></div>
         <div *ngIf="router.url === '/about'"><app-about></app-about></div>
+        <div *ngIf="router.url === '/download'"><app-download-page></app-download-page></div>
     </mat-sidenav-content>
 </mat-sidenav-container>

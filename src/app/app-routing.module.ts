@@ -6,7 +6,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HeaderComponent, pathMatch: 'full'},
   {path: 'about', component: HeaderComponent},
-  {path: 'adder', component: HeaderComponent},
+  {path: 'download', component: HeaderComponent},
 ];
 
 @NgModule({
