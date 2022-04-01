@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { map } from '@firebase/util';
 import { DataBaseService } from '../data-base.service';
 import { dataPoint } from '../DataPoint';
@@ -12,14 +12,15 @@ import { dataPoint } from '../DataPoint';
 })
 export class DownloadPageComponent implements OnInit {
 
-  pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
-  db_data: any
-  new_length: number = 0
+  // pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
+  @Input() pi1_data: any
+  @Input() new_length: any
   old_length: number = 0
+
+
+
   constructor(public db: DataBaseService, public datepipe: DatePipe) { 
-    while (this.pi1_data.co2 == []){
-      this.grab_data()
-    }
+
   }
 
   download_content(content: any, header: string) {
@@ -37,22 +38,22 @@ export class DownloadPageComponent implements OnInit {
   }
 
     grab_data() {
-    let promise = this.db.getData().then(value => 
-      {this.db_data = value
-       this.new_length = this.db_data.length
-      }  
-    )
-    if(this.new_length > this.old_length){
-      for(let i = this.old_length; i < this.new_length; i++){
-        this.pi1_data.co2.push(this.db_data[i].co2)
-        this.pi1_data.humidity.push(this.db_data[i].humidity)
-        this.pi1_data.temperature.push(this.db_data[i].temp)
-        this.pi1_data.time.push(this.db_data[i].time)
-      }
-      this.old_length = this.new_length
-    }
+  //   let promise = this.db.getData().then(value => 
+  //     {this.db_data = value
+  //      this.new_length = this.db_data.length
+  //     }  
+  //   )
+    // if(this.new_length > this.old_length){
+    //   for(let i = this.old_length; i < this.new_length; i++){
+    //     this.pi1_data.co2.push(this.db_data[i].co2)
+    //     this.pi1_data.humidity.push(this.db_data[i].humidity)
+    //     this.pi1_data.temperature.push(this.db_data[i].temp)
+    //     this.pi1_data.time.push(this.db_data[i].time)
+    //   }
+    //   this.old_length = this.new_length
+    // }
     console.log("in grab_data")
-    console.log(this.pi1_data.temperature)
+    console.log(this.pi1_data)
   }
 
   get_formated_data(data_type: string) {

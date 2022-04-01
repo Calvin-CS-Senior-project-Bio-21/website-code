@@ -25,7 +25,7 @@ export class GraphCardsComponent implements OnInit {
 
   // initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
   // pi1_data: number[] = [];
-  pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
+  // pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
 
   // item: AngularFirestoreCollection<dataPoint>
 
@@ -46,7 +46,7 @@ export class GraphCardsComponent implements OnInit {
   //     }
   //   )
 
-  // @Input() db_data: any;
+  @Input() pi1_data: any;
   @Input("id") id = "?";
   @Input("graph") graph = "?"
 
@@ -68,36 +68,36 @@ export class GraphCardsComponent implements OnInit {
       }
     ]
   }
-  db_data: any
+  // db_data: any
   old_length: number = 0 
-  new_length: number = 0
+  @Input() new_length: any
   int_time: number = 3000
-  grab_data() {
-    // let db_data: any
+  // grab_data() {
+  //   // let db_data: any
    
-    let promise = this.db.getData().then(value => 
-      {this.db_data = value
-       this.new_length = this.db_data.length
+  //   // let promise = this.db.getData().then(value => 
+  //   //   {this.db_data = value
+  //   //    this.new_length = this.db_data.length
 
-      }  
-    )
-    if(this.new_length > this.old_length){
-      for(let i = this.old_length; i < this.new_length; i++){
-        this.pi1_data.co2.push(this.db_data[i].co2)
-        this.pi1_data.humidity.push(this.db_data[i].humidity)
-        this.pi1_data.temperature.push(this.db_data[i].temp)
-        this.pi1_data.time.push(this.db_data[i].time)
+  //   //   }  
+  //   // )
+  //   if(this.new_length > this.old_length){
+  //     for(let i = this.old_length; i < this.new_length; i++){
+  //       this.pi1_data.co2.push(this.db_data[i].co2)
+  //       this.pi1_data.humidity.push(this.db_data[i].humidity)
+  //       this.pi1_data.temperature.push(this.db_data[i].temp)
+  //       this.pi1_data.time.push(this.db_data[i].time)
 
-        clearInterval(this.interval)
-      }
+  //       clearInterval(this.interval)
+  //     }
 
-      this.old_length = this.new_length
-    }
-  }
-  interval = setInterval(()=>this.data_update(), this.int_time)
+  //     this.old_length = this.new_length
+  //   }
+  // }
+  // interval = setInterval(()=>this.data_update(), this.int_time)
   data_update() {
     
-    this.grab_data()
+    // this.grab_data()
 
     this.mergeOptions_1_true = {
       xAxis: [
@@ -213,14 +213,14 @@ export class GraphCardsComponent implements OnInit {
         }
       ]
     }
-
   }
   
   constructor(public db: DataBaseService) {
-    // while (this.new_length == 0){
+    while (this.new_length == 0){
+      console.log(this.new_length)
       this.data_update()
-    // }
-      
+    }
+    this.data_update()
     let iter:number = 0
     setInterval(() => {
       console.log(iter)

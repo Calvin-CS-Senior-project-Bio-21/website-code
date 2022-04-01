@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataBaseService } from '../data-base.service';
 import { dataPoint } from '../DataPoint';
 
@@ -9,8 +9,8 @@ import { dataPoint } from '../DataPoint';
 })
 export class HomeComponent implements OnInit {
 
-  db_data: any
-  db_length: any
+  @Input() pi1_data: any
+  @Input() new_length: any
 
   // get_db_data() {
   //   let promise = this.db.getData().then(value => 

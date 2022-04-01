@@ -22,8 +22,8 @@
             </mat-toolbar>
             </p>  
           </div>
-        <div *ngIf="router.url === '/home'"><app-home></app-home></div>
+        <div *ngIf="router.url === '/home'"><app-home [pi1_data]="pi1_data" [new_length]="new_length"></app-home></div>
         <div *ngIf="router.url === '/about'"><app-about></app-about></div>
-        <div *ngIf="router.url === '/download'"><app-download-page></app-download-page></div>
+        <div *ngIf="router.url === '/download'"><app-download-page [pi1_data]="pi1_data" [new_length]="new_length"></app-download-page></div>
     </mat-sidenav-content>
 </mat-sidenav-container>
