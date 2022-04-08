@@ -12,7 +12,6 @@ import { dataPoint } from '../DataPoint';
 })
 export class DownloadPageComponent implements OnInit {
 
-  // pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
   @Input() pi1_data: any
   @Input() new_length: any
   old_length: number = 0
@@ -37,25 +36,6 @@ export class DownloadPageComponent implements OnInit {
     document.body.removeChild(download)
   }
 
-    grab_data() {
-  //   let promise = this.db.getData().then(value => 
-  //     {this.db_data = value
-  //      this.new_length = this.db_data.length
-  //     }  
-  //   )
-    // if(this.new_length > this.old_length){
-    //   for(let i = this.old_length; i < this.new_length; i++){
-    //     this.pi1_data.co2.push(this.db_data[i].co2)
-    //     this.pi1_data.humidity.push(this.db_data[i].humidity)
-    //     this.pi1_data.temperature.push(this.db_data[i].temp)
-    //     this.pi1_data.time.push(this.db_data[i].time)
-    //   }
-    //   this.old_length = this.new_length
-    // }
-    console.log("in grab_data")
-    console.log(this.pi1_data)
-  }
-
   get_formated_data(data_type: string) {
     let line = []
     line.push("" + "Time" + ',' + data_type)
@@ -78,9 +58,7 @@ export class DownloadPageComponent implements OnInit {
   }
 
   export_data(data_type: string) {
-    this.grab_data()
     let myInterval = setInterval(() =>{
-      this.grab_data()
       if (this.new_length != 0){
         if(data_type == "Temperature"){
           let content = this.get_formated_data(data_type)

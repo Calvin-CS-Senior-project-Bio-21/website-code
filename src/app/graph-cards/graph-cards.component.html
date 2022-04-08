@@ -1,25 +1,6 @@
 <mat-card class="graph-card">
     <mat-card-title>
         <mat-toolbar class="card-title" style="background-color: #F3cd00;">
-            <!-- <span class="Title">{{card_title}}</span> -->
-            <!-- <div  *ngIf="show_options == true">
-                <mat-form-field appearance="fill">
-                    <mat-label>X-Axis</mat-label>
-                    <mat-select [formControl]="Readings_1">
-                        <mat-option *ngFor="let option of options_list" [value]="option">
-                            {{option}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Y-Axis</mat-label>
-                    <mat-select [formControl]="Readings_2">
-                        <mat-option *ngFor="let option of options_list" [value]="option">
-                            {{option}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div> -->
             <button *ngIf="show_options" mat-raised-button (click)="show_options = !show_options">Last 24h</button>
             <button *ngIf="!show_options" mat-raised-button (click)="show_options = !show_options">All Data</button>
         </mat-toolbar>
@@ -38,5 +19,4 @@
                 <div *ngIf="!show_options" echarts [options]="chartOptions" [merge]="mergeOptions_3_false" class="demo-chart"></div>
             </div>
     </mat-card-content>
-    <!-- <img mat-card-image src={{img}}> -->
 </mat-card>

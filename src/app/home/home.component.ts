@@ -9,23 +9,14 @@ import { dataPoint } from '../DataPoint';
 })
 export class HomeComponent implements OnInit {
 
+  // Data to be passed on to graph-cards
   @Input() pi1_data: any
   @Input() new_length: any
 
-  // get_db_data() {
-  //   let promise = this.db.getData().then(value => 
-  //     {this.db_data = value
-  //      this.db_length = this.db_data.length
-  //     }  
-  //   ).finally(this.get_db_data)
-  // }
-
   constructor(public db: DataBaseService) { 
-    // this.get_db_data()
   }
 
   ngOnInit(): void {
-    // this.data1 = SAMPLE_1;
   }
 
 }

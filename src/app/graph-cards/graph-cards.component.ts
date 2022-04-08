@@ -14,48 +14,36 @@ import {FormControl} from '@angular/forms';
 })
 export class GraphCardsComponent implements OnInit {
 
-  // data_1: dataPoint = {time: "", co2: 0, humidity: 0, temperature: -273};
+  // mergeOptions for ngx-echarts had to be instantiated here to be used later
   mergeOptions_1_false = {};
   mergeOptions_1_true = {};
   mergeOptions_2_false = {};
   mergeOptions_2_true = {};
   mergeOptions_3_false = {};
   mergeOptions_3_true = {};
-  isLoading = false;
 
-  // initial_data = [this.data_1.co2, this.data_1.humidity, this.data_1.temperature];
-  // pi1_data: number[] = [];
-  // pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
-
-  // item: AngularFirestoreCollection<dataPoint>
-
+  // Some variable declarations
+  old_length: number = 0 
+  int_time: number = 3000
+ 
   ngOnInit(): void {
   }
+
+  // Boolean for showing 24 hour data
   show_options: boolean = false
-  // change_show_options() {
-  //   this.show_options = !this.show_options
 
-  // }
-  Readings_1 = new FormControl();
-  Readings_2 = new FormControl();
-  options_list: string[] = ["CO2", "Humidity", "Temperature", "Time"]
-  // db_data: any 
-  // temp = this.db.getData().then(value => 
-  //     {this.db_data = value
-  //      console.log(this.db_data)
-  //     }
-  //   )
-
+  // Data Obtained from home.component
   @Input() pi1_data: any;
+  @Input() new_length: any
   @Input("id") id = "?";
   @Input("graph") graph = "?"
 
+  // Initiallizes the graphs based on html information
   chartOptions: EChartsOption = {
     xAxis: {
       type: 'category',
       name: "Time",
       boundaryGap: false
-      // data: this.pi1_data.time,
     },
     tooltip: {},
     yAxis: {
@@ -68,14 +56,8 @@ export class GraphCardsComponent implements OnInit {
       }
     ]
   }
-  // db_data: any
-  old_length: number = 0 
-  @Input() new_length: any
-  int_time: number = 3000
- 
-  data_update() {
-    this.old_length = this.new_length
-  }
+
+  // The function call to add new data to the graphs
   merge_options() {
     this.mergeOptions_1_true = {
       xAxis: [
@@ -194,19 +176,19 @@ export class GraphCardsComponent implements OnInit {
   }
   
   constructor(public db: DataBaseService) {
+    // Interval to wait for the database to hookup and for this.pi1_data to 
+    // come down the pipeline
     let debug_interval = setInterval(() => {
-    console.log(this.new_length)
-    this.data_update()
+    this.old_length = this.new_length
     this.merge_options()
     if(this.new_length > 0){
       clearInterval(debug_interval)
     }
     }, 3000)
-    let iter:number = 0
+
+    // This Interval checks every 30 minutes for new data and merges it into the current graphs
     setInterval(() => {
-      console.log(iter)
-      iter++
-      this.data_update()
+      this.old_length = this.new_length
       this.merge_options()
 
     }, 1800000)               //1000 = 1 second, 1,800 seconds = 30 minutes
