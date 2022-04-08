@@ -72,33 +72,11 @@ export class GraphCardsComponent implements OnInit {
   old_length: number = 0 
   @Input() new_length: any
   int_time: number = 3000
-  // grab_data() {
-  //   // let db_data: any
-   
-  //   // let promise = this.db.getData().then(value => 
-  //   //   {this.db_data = value
-  //   //    this.new_length = this.db_data.length
-
-  //   //   }  
-  //   // )
-  //   if(this.new_length > this.old_length){
-  //     for(let i = this.old_length; i < this.new_length; i++){
-  //       this.pi1_data.co2.push(this.db_data[i].co2)
-  //       this.pi1_data.humidity.push(this.db_data[i].humidity)
-  //       this.pi1_data.temperature.push(this.db_data[i].temp)
-  //       this.pi1_data.time.push(this.db_data[i].time)
-
-  //       clearInterval(this.interval)
-  //     }
-
-  //     this.old_length = this.new_length
-  //   }
-  // }
-  // interval = setInterval(()=>this.data_update(), this.int_time)
+ 
   data_update() {
     this.old_length = this.new_length
-    // this.grab_data()
-
+  }
+  merge_options() {
     this.mergeOptions_1_true = {
       xAxis: [
         {
@@ -216,19 +194,20 @@ export class GraphCardsComponent implements OnInit {
   }
   
   constructor(public db: DataBaseService) {
-    console.log(this.new_length)
-    while (this.new_length == null || this.new_length == 0){
-      console.log(this.old_length)
-      // this.data_update()
-    }
+    let debug_interval = setInterval(() => {
     console.log(this.new_length)
     this.data_update()
-    
+    this.merge_options()
+    if(this.new_length > 0){
+      clearInterval(debug_interval)
+    }
+    }, 3000)
     let iter:number = 0
     setInterval(() => {
       console.log(iter)
       iter++
       this.data_update()
+      this.merge_options()
 
     }, 1800000)               //1000 = 1 second, 1,800 seconds = 30 minutes
   }
