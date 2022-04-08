@@ -24,8 +24,8 @@ export class DataBaseService {
   db = getFirestore(this.app)
   getData() {
     let promise = new Promise(async (resolve, reject) =>{
-      // const mainCol = collection(this.db, '<Date>')  //Actual Data
-      const mainCol = collection(this.db, "Debug_Date") //Collection used for debugging 
+      const mainCol = collection(this.db, '<Date>')  //Actual Data
+      // const mainCol = collection(this.db, "Debug_Date") //Collection used for debugging 
       const dataSnapshot = await getDocs(mainCol)
       const sensorData = dataSnapshot.docs.map(doc => doc.data())
       console.log("Read")
