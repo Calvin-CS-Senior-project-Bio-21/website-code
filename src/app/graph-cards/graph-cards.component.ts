@@ -96,7 +96,7 @@ export class GraphCardsComponent implements OnInit {
   // }
   // interval = setInterval(()=>this.data_update(), this.int_time)
   data_update() {
-    
+    this.old_length = this.new_length
     // this.grab_data()
 
     this.mergeOptions_1_true = {
@@ -216,11 +216,14 @@ export class GraphCardsComponent implements OnInit {
   }
   
   constructor(public db: DataBaseService) {
-    while (this.new_length == 0){
-      console.log(this.new_length)
-      this.data_update()
+    console.log(this.new_length)
+    while (this.new_length == null || this.new_length == 0){
+      console.log(this.old_length)
+      // this.data_update()
     }
+    console.log(this.new_length)
     this.data_update()
+    
     let iter:number = 0
     setInterval(() => {
       console.log(iter)

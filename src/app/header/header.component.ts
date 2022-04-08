@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
         clearInterval(this.interval)
       }
 
+      // console.log(this.pi1_data)
       this.old_length = this.new_length
       }
     }
