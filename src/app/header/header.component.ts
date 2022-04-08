@@ -23,19 +23,30 @@ export class HeaderComponent implements OnInit {
     let promise = this.db.getData().then(value => 
       {this.db_data = value
         this.new_length = this.db_data.length
+        console.log(this.db_data)
       }  
     )
-    if(this.new_length > this.old_length){
-      for(let i = this.old_length; i < this.new_length; i++){
-        this.pi1_data.co2.push(this.db_data[i].co2)
-        this.pi1_data.humidity.push(this.db_data[i].humidity)
-        this.pi1_data.temperature.push(this.db_data[i].temp)
-        this.pi1_data.time.push(this.db_data[i].time)
+    // if(this.new_length > this.old_length){
+    //   for(let i = this.old_length; i < this.new_length; i++){
+    //     this.pi1_data.co2.push(this.db_data[i].co2)
+    //     this.pi1_data.humidity.push(this.db_data[i].humidity)
+    //     this.pi1_data.temperature.push(this.db_data[i].temp)
+    //     this.pi1_data.time.push(this.db_data[i].time)
 
-        clearInterval(this.interval)
-      }
+    //     clearInterval(this.interval)
+    //   }
 
-      this.old_length = this.new_length
+    //   this.old_length = this.new_length
+    //   }
+      if(this.new_length > this.old_length){
+        // for(let i = this.old_length; i < this.new_length; i++){
+          this.pi1_data.co2.push(this.db_data[0][0])
+          this.pi1_data.humidity.push(this.db_data[1][0])
+          this.pi1_data.temperature.push(this.db_data[2][0])
+          console.log(this.pi1_data)
+        // }
+        this.old_length = this.new_length
+        console.log(this.old_length)
       }
     }
   interval = setInterval(()=>this.collect_data_once(), 300)
