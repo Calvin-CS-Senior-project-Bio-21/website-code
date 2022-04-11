@@ -11,20 +11,19 @@ import { dataPoint } from '../DataPoint';
 export class HeaderComponent implements OnInit {
 
   constructor(public router: Router, public db: DataBaseService) { 
-    // this.grab_data()
   }
 
+  // Instantiating variables used in this component
   db_data: any;
   old_length: number = 0
   new_length: number = 0
-  iter: number = 0
   pi1_data: dataPoint = {time: [], co2: [], humidity: [], temperature: []}
+
+
   collect_data_once() {
-    // let db_data: any
     let promise = this.db.getData().then(value => 
       {this.db_data = value
         this.new_length = Object.keys(this.db_data[0]).length
-        console.log(this.db_data)
         // Function Call?
       }  
     )
@@ -35,16 +34,17 @@ export class HeaderComponent implements OnInit {
       */
       if(this.new_length > this.old_length){
         for(let co2 in this.db_data[0]){
-          this.pi1_data.time.push(co2)
-          this.pi1_data.co2.push(this.db_data[0][co2])
+          this.pi1_data.time.push(this.db_data[0][co2].Time)
+          this.pi1_data.co2.push(this.db_data[0][co2].CO2)
         }
         for(let humidity in this.db_data[1]){
-          this.pi1_data.humidity.push(this.db_data[1][humidity])
+          this.pi1_data.humidity.push(this.db_data[1][humidity].Humidity)
         }
         for(let temperature in this.db_data[2]){
-          this.pi1_data.temperature.push(this.db_data[2][temperature])
+          this.pi1_data.temperature.push(this.db_data[2][temperature].Temperature)
         }
         clearInterval(this.interval);
+        console.log(this.pi1_data)
         this.old_length = this.new_length
       }
     }

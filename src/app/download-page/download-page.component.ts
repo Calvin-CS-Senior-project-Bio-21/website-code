@@ -38,19 +38,25 @@ export class DownloadPageComponent implements OnInit {
 
   get_formated_data(data_type: string) {
     let line = []
-    line.push("" + "Time" + ',' + data_type)
+    if(data_type == "All"){
+      line.push("" + "Time" + ',' + "co2" + "," + "Temperature" + "," + "Humidity")
+    }else {
+      line.push("" + "Time" + ',' + data_type)
+    }
     for(let i=0; i < this.new_length; i++){
       let row1 = this.pi1_data.time[i]
-      let row2 = 0
+      let row2 = ""
       if(data_type=="Temperature"){
-        row2 = this.pi1_data.temperature[i]
+        row2 = this.pi1_data.temperature[i].toString()
       }else if(data_type == "CO2"){
-        row2 = this.pi1_data.co2[i]
+        row2 = this.pi1_data.co2[i].toString()
       } else if(data_type == "Humidity"){
-        row2 = this.pi1_data.humidity[i]
+        row2 = this.pi1_data.humidity[i].toString()
+      } else if(data_type == "All"){
+        row2 = this.pi1_data.co2[i].toString() + "," + this.pi1_data.temperature[i].toString() + "," + this.pi1_data.humidity[i].toString()
       }
       
-      line.push("\n" + row1 + "," + row2.toString())
+      line.push("\n" + row1 + "," + row2)
     }
     console.log(line)
     return line
@@ -69,6 +75,9 @@ export class DownloadPageComponent implements OnInit {
         }else if (data_type == "Humidity"){
           let content = this.get_formated_data(data_type)
           this.download_content(content, "Humidity")
+        }else if (data_type == "All"){
+          let content = this.get_formated_data(data_type)
+          this.download_content(content, "All")
         }
       }
       clearInterval(myInterval)

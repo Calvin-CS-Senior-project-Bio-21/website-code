@@ -45,7 +45,15 @@ export class GraphCardsComponent implements OnInit {
       name: "Time",
       boundaryGap: false
     },
-    tooltip: {},
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
+    },
     yAxis: {
       type: 'value',
     },
