@@ -24,30 +24,33 @@ export class HeaderComponent implements OnInit {
     let promise = this.db.getData().then(value => 
       {this.db_data = value
         this.new_length = Object.keys(this.db_data[0]).length
-        // Function Call?
-      }  
-    )
-      /*
+        console.log(this.db_data)
+        this.orginize_data()
+      })
+    }
+  /*
         The iteration variables in each of these loops are a string and by indexing
         that string it returns the key value. These key strings are times
         which is why the time array is just populated with the co2 key 
       */
-      if(this.new_length > this.old_length){
-        for(let co2 in this.db_data[0]){
-          this.pi1_data.time.push(this.db_data[0][co2].Time)
-          this.pi1_data.co2.push(this.db_data[0][co2].CO2)
-        }
-        for(let humidity in this.db_data[1]){
-          this.pi1_data.humidity.push(this.db_data[1][humidity].Humidity)
-        }
-        for(let temperature in this.db_data[2]){
-          this.pi1_data.temperature.push(this.db_data[2][temperature].Temperature)
-        }
-        clearInterval(this.interval);
-        console.log(this.pi1_data)
-        this.old_length = this.new_length
+  orginize_data() {
+    let key_data = []
+    if(this.new_length > this.old_length){
+      for(let i = 0; i < this.new_length; i++){
+        key_data.push((Object.keys(this.db_data[0])[i]))
       }
+      key_data = key_data.sort()
+      for(let data_key in key_data){
+        this.pi1_data.time.push(this.db_data[0][key_data[data_key]].Time)
+        this.pi1_data.co2.push(this.db_data[0][key_data[data_key]].CO2)
+        this.pi1_data.humidity.push(this.db_data[1][key_data[data_key]].Humidity)
+        this.pi1_data.temperature.push(this.db_data[2][key_data[data_key]].Temperature)
+      }
+      clearInterval(this.interval);
+      console.log(this.pi1_data)
+      this.old_length = this.new_length
     }
+  }
   interval = setInterval(()=>this.collect_data_once(), 300)
 
   ngOnInit(): void {
